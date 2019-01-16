@@ -1,6 +1,0 @@
-package gameheaven.bbs.entity;
-
-public class User {
-	String id;
-	String name;
-}

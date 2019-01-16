@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+/**
+ * @author PQX
+ *
+ */
+package gameheaven.bbs.serviceImpl;
+import gameheaven.bbs.entity.User;
+import gameheaven.bbs.service.*;
+import gameheaven.bbs.dao.*;
+import gameheaven.bbs.daoImpl.UserDaoImpl;
+
+public class UserServiceImpl implements UserService{
+	UserDao dao = new UserDaoImpl();
+	@Override
+	public User findUserByPhone(int phone) {
+		// TODO Auto-generated method stub
+		return dao.findUserByPhone(phone);
+	}
+	
+}
+

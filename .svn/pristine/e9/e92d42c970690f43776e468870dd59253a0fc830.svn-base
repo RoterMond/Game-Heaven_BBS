@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+/**
+ * @author PQX
+ *
+ */
+package gameheaven.bbs.service;
+
+import gameheaven.bbs.entity.User;
+
+public interface UserService{
+
+	public User findUserByPhone(int userPhoneNumber);
+	
+}

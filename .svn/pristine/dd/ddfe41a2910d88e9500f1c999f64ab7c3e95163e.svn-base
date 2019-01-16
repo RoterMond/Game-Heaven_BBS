@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+/**
+ * @author PQX
+ *
+ */
+package gameheaven.bbs.service;
+
+public interface UserService{
+	
+}

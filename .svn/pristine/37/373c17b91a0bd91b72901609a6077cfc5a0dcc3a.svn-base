@@ -1,0 +1,64 @@
+package gameheaven.bbs.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import gameheaven.bbs.entity.*;
+import gameheaven.bbs.service.*;
+import gameheaven.bbs.serviceImpl.*;
+
+/**
+ * Servlet implementation class FindTopicById
+ */
+@WebServlet("/findTopicById")
+public class FindTopicById extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FindTopicById() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//接受请求，处理参数
+		String IdStr = request.getParameter("topicId");
+		Integer topicId = Integer.parseInt(IdStr);
+		
+		Topic topic = new Topic();
+		User user = new User();
+		TopicService topicService = new TopicServiceImpl();
+		UserService userService = new UserServiceImpl();
+		//HttpSession session = request.getSession();
+		//调用业务查询帖子ID
+		topic = topicService.findTopicById(topicId);
+		user = userService.findUserById(topic.getUserId());
+		//跳转，重定向到该帖子页面
+		request.setAttribute("topic", topic);
+		request.setAttribute("user", user);
+		RequestDispatcher rd = request.getRequestDispatcher("show/Topic.jsp");
+		rd.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

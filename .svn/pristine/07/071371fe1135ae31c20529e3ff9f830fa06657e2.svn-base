@@ -1,0 +1,72 @@
+package gameheaven.bbs.controller;
+import gameheaven.bbs.serviceImpl.*;
+import gameheaven.bbs.entity.*;
+import gameheaven.bbs.service.UserService;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class SaveStudent
+ */
+@WebServlet("/saveUser.do")
+public class SaveUser extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SaveUser() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//接受请求，处理参数
+		User user = new User();
+		UserService userService = new UserServiceImpl();
+		user.setUserName(request.getParameter("userName"));
+		user.setPassword(request.getParameter("password"));
+		user.setPhone(Long.parseLong(request.getParameter("phone")));
+		user.setEmail(request.getParameter("email"));
+		user.setType(1);
+		user.setAge(Integer.parseInt(request.getParameter("age")));
+		user.setSex(Integer.parseInt(request.getParameter("sex")));
+		
+		HttpSession session = request.getSession();
+		if(userService.findUserByPhone(user.getPhone()) != null) {
+			String message = "手机号已被注册！";
+			session.setAttribute("message", message);
+		}else if(String.valueOf(user.getPhone()).length() != 11){
+			String message = "手机号不为11或为空！";
+			session.setAttribute("message", message);
+		}else if(!request.getParameter("repassword").equals(user.getPassword())){
+			String message = "两次密码输入不同！";
+			session.setAttribute("message", message);
+		}else {
+			//调用业务
+			userService.insertUser(user);
+			String message = "注册一位用户成功！";
+			session.setAttribute("message", message);
+		}
+		//跳转
+		response.sendRedirect("input/register.jsp");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

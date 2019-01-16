@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+/**
+ * @author PQX
+ *
+ */
+package gameheaven.bbs.serviceImpl;
+import gameheaven.bbs.service.*;
+
+public class UserServiceImpl implements UserService{
+	
+}
+

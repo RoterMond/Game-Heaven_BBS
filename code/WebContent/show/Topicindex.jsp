@@ -78,17 +78,7 @@ function isBack(){
     <div class="div1">
     <img src="${pageContext.request.contextPath}/img/bh.jpg" alt="..." class="img-rounded">
     </div>
-	
-	<c:forEach var="topic" items="${sessionScope.topicList}">
-	 <div class="panel panel-primary">
-        <div class="panel-heading"><a href="${pageContext.request.contextPath}/findTopicById?topicId=${topic.topicId}" class="panel-title">${topic.title}</a></div>
-        <div class="panel-body"> ${topic.content}</div>
-        <div class="panel-footer">${topic.time}</div>
-    </div>
-    
-      
-	</c:forEach>
-	  <form role="form" action="${pageContext.request.contextPath}/saveTopic">
+    <form role="form" action="${pageContext.request.contextPath}/saveTopic">
                 <div class="form-group">
                     <label for="name">标题</label>
                     <input type="text" class="form-control" placeholder="请输入标题" name = "title">
@@ -98,7 +88,19 @@ function isBack(){
                     <textarea class="form-control" rows="3" placeholder="请输入内容" name = "content"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" >我要发帖</button>
-            </form>
+	</form>
+	<br>
+	<hr>
+	<c:forEach var="topic" items="${sessionScope.topicList}">
+	 <div class="panel panel-primary">
+        <div class="panel-heading"><a href="${pageContext.request.contextPath}/findTopicById?topicId=${topic.topicId}" class="panel-title">${topic.title}</a></div>
+        <div class="panel-body"> ${topic.content}</div>
+        <div class="panel-footer">${topic.time}</div>
+    </div>
+    
+      
+</c:forEach>
+
     
 
 </div>

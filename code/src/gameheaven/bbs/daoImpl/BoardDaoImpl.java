@@ -89,6 +89,32 @@ public class BoardDaoImpl implements BoardDao{
 		}
 		return null;
 	}
+
+	@Override
+	public List<Board> findAllBoard() {
+		String sql = "select * from board";
+		
+		try {
+			conn = getConn(url, username, password);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			List<Board> boardList = new ArrayList<Board>();
+			while(rs.next()) {
+				Board board = new Board();
+				board.setBoardId(rs.getInt("boardId"));
+				board.setBoardName(rs.getString("boardName"));
+				board.setRemark(rs.getString("remark"));
+				boardList.add(board);
+			}
+			return boardList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(conn, ps, rs);
+		}
+		return null;
+	}
 	
 	
 	

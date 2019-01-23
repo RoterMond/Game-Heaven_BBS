@@ -38,7 +38,6 @@ public class Login extends HttpServlet {
 		
 		String message = null;
 		HttpSession session = request.getSession();
-		
 		if(userPhone == "") {
 			message = "手机号为空！";
 			session.setAttribute("message", message);
@@ -57,7 +56,7 @@ public class Login extends HttpServlet {
 					message = "登陆成功！";
 					session.setAttribute("message", message);
 					session.setAttribute("user", user);
-					response.sendRedirect("show/index.jsp");
+					response.sendRedirect(request.getContextPath()+"/findAllBoard");
 				}else {
 					message = "密码错误，请重新输入！";
 					session.setAttribute("message", message);

@@ -15,6 +15,12 @@
         .div1{
             margin-bottom: 20px;
         }
+        .panel-heading{
+        	font-weight: bold;
+        }
+        .p2{
+        	text-align:right
+        }
         </style>
 </head>
 <!-- 获取从request中保存的message标记值，来弹出提示窗口 -->
@@ -38,37 +44,39 @@ function isBack(){
 	}
 }
 </script>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">${sessionScope.board.boardName}</a>
-        <c:choose>
-           		<c:when test = "${not empty sessionScope.user.userName}">
-           			<ul class="nav navbar-nav navbar-right">
-	           			<li>
-		                    <a href="${pageContext.request.contextPath}/show/index.jsp">返回</a>
-		                </li>
-		                <li>
-		                    <a href="javascript:isBack()">退出登录</a>
-		                </li>
-		                <li>
-		                    <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
-		                </li>
-		            </ul>
-           		</c:when>
-           		<c:otherwise>
-           			<ul class="nav navbar-nav navbar-right">
-	           			<li>
-		                    <a href="${pageContext.request.contextPath}/show/index.jsp">返回</a>
-		                </li>
-		                <li>
-		                    <a href="${pageContext.request.contextPath}/input/login.jsp">登录</a>
-		                </li>
-		                <li>
-		                    <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
-		                </li>
-		            </ul>
-           		</c:otherwise>
-           	</c:choose>
+       	<c:choose>
+       		<c:when test = "${not empty sessionScope.user.userName}">
+	       		<a class="navbar-brand" href="${pageContext.request.contextPath}/show/Topicindex.jsp">${sessionScope.board.boardName}</a>
+	       		<ul class="nav navbar-nav navbar-right">
+	       		  <li>
+		              <a href="${pageContext.request.contextPath}/findAllBoard">返回</a>
+		          </li>
+	              <li>
+	                  <a href="javascript:isBack()">退出登录</a>
+	              </li>
+	              <li>
+	                  <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
+	              </li>
+	        		 </ul>
+       		</c:when>
+       		<c:otherwise>
+       		<a class="navbar-brand" href="${pageContext.request.contextPath}/show/Topicindex.jsp">${sessionScope.board.boardName}</a>
+       		<ul class="nav navbar-nav navbar-right">
+			  <li>
+		          <a href="${pageContext.request.contextPath}/findAllBoard">返回</a>
+		      </li>
+              <li>
+                  <a href="${pageContext.request.contextPath}/input/login.jsp">登录</a>
+              </li>
+              <li>
+                  <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
+              </li>
+          	</ul>
+       		</c:otherwise>
+       	</c:choose>
     </div>
 </nav>
 
@@ -91,15 +99,24 @@ function isBack(){
 	</form>
 	<br>
 	<hr>
-	<c:forEach var="topic" items="${sessionScope.topicList}">
+	<!-- 帖子列表 -->
+	<c:forEach var="topic" items="${sessionScope.topicList}" varStatus="status">
 	 <div class="panel panel-primary">
         <div class="panel-heading"><a href="${pageContext.request.contextPath}/findTopicById?topicId=${topic.topicId}" class="panel-title">${topic.title}</a></div>
         <div class="panel-body"> ${topic.content}</div>
-        <div class="panel-footer">${topic.time}</div>
+        <div class="panel-footer">
+        <p>
+        	发帖时间：${topic.time}
+        </p>
+        <p class="p2">
+        	发帖人：${sessionScope.authorList[status.index].userName}
+        </p>
+        	
+        </div>
     </div>
     
       
-</c:forEach>
+	</c:forEach>
 
     
 

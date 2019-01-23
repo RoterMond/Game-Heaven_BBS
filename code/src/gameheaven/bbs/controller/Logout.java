@@ -29,7 +29,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		response.sendRedirect(request.getContextPath()+"/show/index.jsp");
+		response.sendRedirect(request.getContextPath()+"/findAllBoard");
 	}
 
 	/**

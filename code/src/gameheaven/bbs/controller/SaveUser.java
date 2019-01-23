@@ -72,7 +72,7 @@ public class SaveUser extends HttpServlet {
 				userService.insertUser(user);
 				message = "注册一位用户成功！";
 				session.setAttribute("message", message);
-				response.sendRedirect("show/index.jsp");
+				response.sendRedirect("findAllBoard");
 			}
 		}
 		

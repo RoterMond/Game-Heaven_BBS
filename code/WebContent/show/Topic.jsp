@@ -130,39 +130,42 @@ function isBack(){
 	}
 }
 </script>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">${sessionScope.board.boardName}</a>
-        <c:choose>
-           		<c:when test = "${not empty sessionScope.user.userName}">
-           			<ul class="nav navbar-nav navbar-right">
-	           			<li>
-		                    <a href="${pageContext.request.contextPath}/show/Topicindex.jsp">返回</a>
-		                </li>
-		                <li>
-		                    <a href="javascript:isBack()">退出登录</a>
-		                </li>
-		                <li>
-		                    <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
-		                </li>
-		            </ul>
-           		</c:when>
-           		<c:otherwise>
-           			<ul class="nav navbar-nav navbar-right">
-           			<li>
-	                    <a href="${pageContext.request.contextPath}/show/Topicindex.jsp">返回</a>
-	                </li>
-	                <li>
-	                    <a href="${pageContext.request.contextPath}/input/login.jsp">登录</a>
-	                </li>
-	                <li>
-	                    <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
-	                </li>
-		            </ul>
-           		</c:otherwise>
-           	</c:choose>
+       	<c:choose>
+       		<c:when test = "${not empty sessionScope.user.userName}">
+	       		<a class="navbar-brand" href="${pageContext.request.contextPath}/show/Topicindex.jsp">${sessionScope.board.boardName}</a>
+	       		<ul class="nav navbar-nav navbar-right">
+	       		  <li>
+		              <a href="${pageContext.request.contextPath}/show/Topicindex.jsp">返回</a>
+		          </li>
+	              <li>
+	                  <a href="javascript:isBack()">退出登录</a>
+	              </li>
+	              <li>
+	                  <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
+	              </li>
+	        		 </ul>
+       		</c:when>
+       		<c:otherwise>
+       		<a class="navbar-brand" href="${pageContext.request.contextPath}/show/Topicindex.jsp">${sessionScope.board.boardName}</a>
+       		<ul class="nav navbar-nav navbar-right">
+			  <li>
+		          <a href="${pageContext.request.contextPath}/show/Topicindex.jsp">返回</a>
+		      </li>
+              <li>
+                  <a href="${pageContext.request.contextPath}/input/login.jsp">登录</a>
+              </li>
+              <li>
+                  <a href="${pageContext.request.contextPath}/input/register.jsp">注册</a>
+              </li>
+          	</ul>
+       		</c:otherwise>
+       	</c:choose>
     </div>
 </nav>
+
 
 <!-- 楼主内容 -->
 <div class="container">
@@ -199,7 +202,6 @@ function isBack(){
                 <img src="${pageContext.request.contextPath}/img/timg.jpg" width="100%" height="100%">
             </div>
             <div class="div5">
-			
              ${requestScope.userList[status.index].userName}
             </div>
         </div>

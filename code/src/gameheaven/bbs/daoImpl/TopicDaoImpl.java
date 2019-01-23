@@ -60,7 +60,7 @@ public class TopicDaoImpl implements TopicDao{
 	
 	@Override
 	public List<Topic> findBoardTopic(Integer boardId) {
-		String sql="select * from topic where boardId = ?";
+		String sql="select * from topic where boardId = ? order by topicId desc";
 		
 		try {
 			conn = getConn(url, username, password);

@@ -37,6 +37,7 @@ public class FindTopicById extends HttpServlet {
 		//接受请求，处理参数
 		String IdStr = request.getParameter("topicId");
 		HttpSession session = request.getSession();
+		//帖子内回复请求servlet
 		if(IdStr == null) {
 			Integer topicId = (Integer) session.getAttribute("topicId");
 			Topic topic = new Topic();
@@ -60,7 +61,9 @@ public class FindTopicById extends HttpServlet {
 			request.setAttribute("user", author);
 			request.setAttribute("replyList", replyList);
 			request.setAttribute("userList", userList);
-		}else {
+		}
+		//从帖子列表请求servlet
+		else {
 			Integer topicId = Integer.parseInt(IdStr);
 			Topic topic = new Topic();
 			User author = new User();
@@ -86,7 +89,7 @@ public class FindTopicById extends HttpServlet {
 		}
 	
 		
-		//跳转，重定向到该帖子页面
+		//跳转到该帖子页面
 		
 		RequestDispatcher rd = request.getRequestDispatcher("show/Topic.jsp");
 		rd.forward(request, response);

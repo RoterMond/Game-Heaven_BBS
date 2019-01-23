@@ -20,6 +20,12 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.findBoardById(boardId);
 	}
+
+	@Override
+	public List<Board> findAllBoard() {
+		// TODO Auto-generated method stub
+		return dao.findAllBoard();
+	}
 	
 
 	

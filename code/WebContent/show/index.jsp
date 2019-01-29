@@ -93,27 +93,26 @@ function isBack(){
 <div class="container">
 	<div class="jumbotron">
 		<div style="text-align:center">
-		  <h1 >Game Heaven</h1>
+		  <h1 >Game Heaven<small>游戏论坛</small></h1>
 		  <p>No game no life!</p>
-		  <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/input/register.jsp" role="button">立即注册</a></p>
+		  <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/input/register.jsp" role="button"><span class="glyphicon glyphicon-user"></span>立即注册</a>
 		
-		       </div>
+		</div>
 		        <hr>
 		    <div class="row">
 				<c:forEach var='board' items='${sessionScope.boardList}' begin="0" end="3" varStatus="status">	
 		            <div class="col-md-3">
 		                <div class="row">
 		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
+		                    <h4 class="glyphicon glyphicon-send"></h4>
 		                    </div>
 		                    <div class="col-md-10">
 		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=${board.boardId}">${board.boardName}</a></h4>
-		                        <p>
-		                            发贴 : <span>${sessionScope.topicNumList[status.index]}</span>, 回复 : <span>${sessionScope.boardReplyNumList[status.index]}</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>${sessionScope.postTimeList[status.index]}</span>
-		                        </p>
+		                        <ul>
+								  <li>发贴 : <span>${sessionScope.topicNumList[status.index]}</span></li>
+								  <li>回复 : <span>${sessionScope.boardReplyNumList[status.index]}</span></li>
+								  <li>最后发表 : <span>${sessionScope.postTimeList[status.index]}</span></li>
+								</ul>
 		                    </div>
 		                </div>
 					</div>
@@ -128,149 +127,15 @@ function isBack(){
 		                    </div>
 		                    <div class="col-md-10">
 		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=${board.boardId}">${board.boardName}</a></h4>
-		                        <p>
-		                            发贴 : <span>${sessionScope.topicNumList[status.index]}</span>, 回复 : <span>${sessionScope.boardReplyNumList[status.index]}</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>${sessionScope.postTimeList[status.index]}</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-				</c:forEach>
-			</div>
-				<%-- <div class="row">
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=1">恐怖类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=2">射击类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=3">动作冒险类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=4">角色扮演类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
+		                        <ul>
+								  <li>发贴 : <span>${sessionScope.topicNumList[status.index]}</span></li>
+								  <li>回复 : <span>${sessionScope.boardReplyNumList[status.index]}</span></li>
+								  <li>最后发表 : <span>${sessionScope.postTimeList[status.index]}</span></li>
+								</ul>
+	                    </div>
+	                </div>
 				</div>
-				<div class="row">
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=5">策略类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=6">赛车类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=7">体育类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-		            <div class="col-md-3">
-		                <div class="row">
-		                    <div class="col-md-2">
-		                        <h4 class="glyphicon glyphicon-send"></h4>
-		                    </div>
-		                    <div class="col-md-10">
-		                        <h4><a href="${pageContext.request.contextPath}/findBoardTopic?boardId=8">格斗对打类</a></h4>
-		                        <p>
-		                            发贴 : <span>55</span>, 回复 : <span>66</span>
-		                        </p>
-		                        <p>
-		                            最后发表 : <span>2019-1-10 17:43</span>
-		                        </p>
-		                    </div>
-		                </div>
-					</div>
-				</div> --%>
+			</c:forEach>
 		</div>
 	</div>
 </div>
